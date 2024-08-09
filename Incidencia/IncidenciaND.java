@@ -1,7 +1,6 @@
-package Grafos.Incidencia;
+package Incidencia;
 
 import java.io.RandomAccessFile;
-import java.util.RandomAccess;
 
 public class IncidenciaND {
 
@@ -21,9 +20,7 @@ public class IncidenciaND {
 
             for (int j = 0; j < coluna; j++) {
                 System.out.print("[" + mat[i][j] + "] ");
-                if (mat[i][j] == 1) {
-                    auxG++;
-                }
+                auxG+= mat[i][j];
             }
 
             System.out.print("Grau: " + auxG + " ");

@@ -1,7 +1,6 @@
-package Grafos.Incidencia;
+package Incidencia;
 
 import java.io.RandomAccessFile;
-import java.util.RandomAccess;
 
 public class IncidenciaD {
 
