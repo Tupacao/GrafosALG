@@ -1,5 +1,3 @@
-// teste comentário
-
 package Adjacencia;
 
 import java.io.RandomAccessFile;
