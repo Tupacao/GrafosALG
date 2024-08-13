@@ -38,7 +38,6 @@ public class AdjacenciaD {
         String arq = "", aux[] = null;
 
         try {
-            long start = System.nanoTime();
 
             RandomAccessFile raf = new RandomAccessFile("./graph-test-50000-1.txt", "r");
 
@@ -58,10 +57,6 @@ public class AdjacenciaD {
             }
 
             printMatriz(matriz, tamM);
-
-            long end = System.nanoTime() - start;
-
-            System.out.println(end / 1000000000);
 
             raf.close();
 
