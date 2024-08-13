@@ -38,18 +38,19 @@ public class AdjacenciaD {
         String arq = "", aux[] = null;
 
         try {
+            long start = System.nanoTime();
 
-            RandomAccessFile raf = new RandomAccessFile("./entrada100.txt", "r");
+            RandomAccessFile raf = new RandomAccessFile("./graph-test-50000-1.txt", "r");
 
             arq = raf.readLine();
-            aux = arq.split(" ");
+            aux = arq.split(" ");;
             tamM = Integer.parseInt(aux[0]);
             matriz = new int[tamM][tamM];
 
             preencherMatriz(matriz, tamM);
 
             while ((arq = raf.readLine()) != null) {
-                aux = arq.split(" ");
+                aux = arq.trim().split("\\s+");
                 int v1 = Integer.parseInt(aux[0]) - 1;
                 int v2 = Integer.parseInt(aux[1]) - 1;
 
@@ -57,6 +58,10 @@ public class AdjacenciaD {
             }
 
             printMatriz(matriz, tamM);
+
+            long end = System.nanoTime() - start;
+
+            System.out.println(end / 1000000000);
 
             raf.close();
 
