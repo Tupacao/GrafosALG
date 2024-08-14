@@ -49,6 +49,8 @@ public class ListaD {
             preencherVetor(sucessores);
             preencherVetor(antecessores);
 
+            long start = System.nanoTime();
+
             while ((aux = raf.readLine()) != null) {
                 temp = aux.trim().split("\\s+");
                 sucessores[Integer.parseInt(temp[0]) - 1].add(Integer.parseInt(temp[1]));
@@ -66,6 +68,9 @@ public class ListaD {
             for (int i = 0; i < tam; i++) {
                 System.out.println("Vértice " + (i+1) + " - Sucessores: " + sucessores[i].getGrau() + " - Antecessores: " + antecessores[i].getGrau());
             }
+
+            long fim = System.nanoTime() - start;
+            System.out.println(fim/1000000000);
 
             raf.close();
 
