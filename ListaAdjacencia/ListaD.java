@@ -2,6 +2,7 @@ package ListaAdjacencia;
 
 import java.io.RandomAccessFile;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 class NodeD {
     private int grau;
@@ -19,10 +20,12 @@ class NodeD {
     public int getGrau() {
         return grau;
     }
+
     public void add(int value) {
         this.list.add(value);
         grau++;
     }
+
 }
 
 public class ListaD {
@@ -34,12 +37,17 @@ public class ListaD {
     }
 
     public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
         NodeD sucessores[] = null, antecessores[] = null;
         String temp[] = null, aux = "";
 
+        System.out.print("Por favor insira o nome do arquivo: ");
+        String arq = sc.nextLine();
+
         try {
 
-            RandomAccessFile raf = new RandomAccessFile("./graph-test-50000-1.txt", "r");
+            RandomAccessFile raf = new RandomAccessFile("./" + arq, "r");
 
             temp = raf.readLine().split(" ");
             int tam = Integer.parseInt(temp[0]);
@@ -49,8 +57,9 @@ public class ListaD {
             preencherVetor(sucessores);
             preencherVetor(antecessores);
 
-            long start = System.nanoTime();
+            // long start = System.nanoTime();
 
+            System.out.println("processando ...");
             while ((aux = raf.readLine()) != null) {
                 temp = aux.trim().split("\\s+");
                 sucessores[Integer.parseInt(temp[0]) - 1].add(Integer.parseInt(temp[1]));
@@ -65,14 +74,29 @@ public class ListaD {
             //     }
             // }
 
-            for (int i = 0; i < tam; i++) {
-                System.out.println("Vértice " + (i+1) + " - Sucessores: " + sucessores[i].getGrau() + " - Antecessores: " + antecessores[i].getGrau());
+            System.out.println("Para sair insira um valor negativo.\n");
+
+            int usefull = 1;
+
+            while (true) {
+                System.out.print("Insira o vértice que se deseja analisar: ");
+                usefull = sc.nextInt();
+
+                if (usefull <= 0) break;
+                
+                System.out.println("Vértice " + usefull + " - Sucessores: " + sucessores[usefull - 1].getGrau() + " " + sucessores[usefull - 1].getList() + " - Antecessores: " + antecessores[usefull - 1].getGrau() + " " + antecessores[usefull - 1].getList() + "\n");
             }
 
-            long fim = System.nanoTime() - start;
-            System.out.println(fim/1000000000);
+
+            // for (int i = 0; i < tam; i++) {
+            //     System.out.println("Vértice " + (i+1) + " - Sucessores: " + sucessores[i].getGrau() + " - Antecessores: " + antecessores[i].getGrau());
+            // }
+
+            // long fim = System.nanoTime() - start;
+            // System.out.println(fim/1000000000);
 
             raf.close();
+            sc.close();
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
