@@ -2,8 +2,7 @@ package Implementacao01;
 
 // Implementação da lista de adjacência vista nos slides da disciplina.
 // A escolha foi devido a maior facilidade de implementação e pela menor utilização de memória se comparado com os outros algoritmos estudados
-// A complexidada na busca se torna O(n) e em relaçao a espaço se torna O(n + m) [n = sucessores; m = antecessores]
-// Foram criados dois vetores, um que continha os suessores e outro que continha os predecessores de um vértice
+// Optei por velocidade e portanto criei dois vetores, um com os sucessores e outro com os predecessores
 
 import java.io.RandomAccessFile;
 import java.util.LinkedList;
@@ -31,6 +30,15 @@ class NodeD {
         grau++;
     }
 
+    public boolean isAntecessor (int vertice){
+        boolean resp = true;
+        if(list.indexOf(vertice) == -1){
+            resp = false;
+        }
+
+        return resp;
+    }
+
 }
 
 public class ListaImplementacao {
@@ -47,7 +55,9 @@ public class ListaImplementacao {
         NodeD sucessores[] = null, antecessores[] = null;
         String temp[] = null, aux = "";
 
+        System.out.print("Insira o nome do arquivo: ");
         String arq = sc.nextLine();
+        System.out.print("Vértice a ser analisado: ");
         int usefull = sc.nextInt();
 
         try {
@@ -62,6 +72,8 @@ public class ListaImplementacao {
             preencherVetor(sucessores);
             preencherVetor(antecessores);
 
+            long start = System.nanoTime();
+
             System.out.println("\nprocessando ...\n");
 
             while ((aux = raf.readLine()) != null) {
@@ -70,13 +82,26 @@ public class ListaImplementacao {
                 antecessores[Integer.parseInt(temp[1]) - 1].add(Integer.parseInt(temp[0]));
             }
 
+            // LinkedList<Integer> numbers = new LinkedList<Integer>();
+
+            // for (int i = 0; i < sucessores.length; i++) {
+            //     if (sucessores[i].isAntecessor(usefull)) {
+            //         numbers.add(i+1);
+            //     }
+            // }
+
 
             System.out.println("Vértice " + usefull + " - Sucessores: " + sucessores[usefull - 1].getGrau() + " "
                     + sucessores[usefull - 1].getList() + " - Antecessores: " + antecessores[usefull - 1].getGrau()
-                    + " " + antecessores[usefull - 1].getList() + "\n");
+                    + " " +  antecessores[usefull - 1].getList()
+                     + "\n");
+
+                     long fim = System.nanoTime() - start;
+                     System.out.println(fim/1000000000);
 
             raf.close();
             sc.close();
+
 
         } catch (
 
