@@ -1,5 +1,7 @@
 package BuscaProfundidade;
 
+// https://algs4.cs.princeton.edu/41graph/NonrecursiveDFS.java.html - a parte do programa iterativo veio deste site e adaptado para essa implementação
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Collections;
