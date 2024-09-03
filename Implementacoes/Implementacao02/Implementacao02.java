@@ -86,6 +86,7 @@ class Grafo {
 class BPD extends Grafo{
     private LinkedList<Integer> grafo[];
     private int vidaVertices[][] = null;
+    private String ArvoreResp = "";
 
     public BPD(String arq, int vertice) {
         super(arq, vertice);
@@ -121,6 +122,7 @@ class BPD extends Grafo{
 
         for (int w : grafo[vertice - 1]) {
             if (vidaVertices[0][w - 1] == 0) {
+                ArvoreResp+= "\n" + vertice + " -> " + w + " (árvore)";
                 vidaVertices[2][w - 1] = vertice;
                 time = BuscaProfundidade(w, time);
             }
@@ -136,7 +138,10 @@ class BPD extends Grafo{
         int inicio = vidaVertices[0][vertice - 1];
         int fim = vidaVertices[1][vertice - 1];
 
-        System.out.println("");
+        System.out.println("\nArestas de árvores: ");
+        System.out.println(ArvoreResp);
+
+        System.out.println("\nArestas divergentes do vértice:\n");
 
         for (int value : this.grafo[vertice - 1]) {
             if (inicio < vidaVertices[0][value - 1] && fim > vidaVertices[1][value - 1]
@@ -152,16 +157,6 @@ class BPD extends Grafo{
             }
         }
 
-    }
-
-    public void printVida() {
-        for (int i = 0; i < grafo.length; i++) {
-            System.out.println(
-                    "\nVértice: " + (i + 1)
-                            + "\nInicio: " + vidaVertices[0][i]
-                            + "\nFim: " + vidaVertices[1][i]
-                            + "\nPai: " + vidaVertices[2][i]);
-        }
     }
 
 }
