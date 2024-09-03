@@ -1,4 +1,4 @@
-package BuscaProfundidade;
+package Implementacoes.Implementacao02;
 
 // https://algs4.cs.princeton.edu/41graph/NonrecursiveDFS.java.html - a parte do programa iterativo veio deste site e adaptado para essa implementação
 
@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.Stack;
 
 class Grafo {
 
@@ -17,6 +16,10 @@ class Grafo {
 
     public Grafo(String arq, int vertice) {
         criarGrafo(arq, vertice);
+    }
+
+    public LinkedList<Integer>[] getSucessores (){
+        return this.sucessores;
     }
 
     private void preencherList() {
@@ -80,52 +83,25 @@ class Grafo {
     }
 }
 
-class BPD {
-    private Grafo aux = null;
+class BPD extends Grafo{
     private LinkedList<Integer> grafo[];
     private int vidaVertices[][] = null;
+
+    public BPD(String arq, int vertice) {
+        super(arq, vertice);
+        
+        this.grafo = getSucessores();
+
+        vidaVertices = new int[3][getTam()];
+        preencher(getTam());
+
+        BuscaProfundidade();
+    }
 
     private void preencher(int tam) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < tam; j++) {
                 this.vidaVertices[i][j] = 0;
-            }
-        }
-    }
-    
-    private void BuscaProfundidade2() {
-        int time = 0;
-        Stack<Integer> stack = new Stack<>();
-        
-        for (int i = 0; i < grafo.length; i++) {
-            if (vidaVertices[0][i] == 0) {
-                stack.push(i + 1); // Adiciona o vértice inicial na pilha
-                
-                while (!stack.isEmpty()) {
-                    int vertice = stack.peek(); // Vértice no topo da pilha sem removê-lo
-                    
-                    if (vidaVertices[0][vertice - 1] == 0) { // Se o vértice não foi visitado
-                        time++;
-                        vidaVertices[0][vertice - 1] = time; // Marcar o tempo de descoberta
-                    }
-                    
-                    boolean encontrouAdjacenteNaoVisitado = false;
-    
-                    for (int w : grafo[vertice - 1]) {
-                        if (vidaVertices[0][w - 1] == 0) { // Se o adjacente não foi visitado
-                            stack.push(w);
-                            vidaVertices[2][w - 1] = vertice; // Marca o vértice de origem
-                            encontrouAdjacenteNaoVisitado = true;
-                            break; // Sai do loop após encontrar o primeiro adjacente não visitado
-                        }
-                    }
-    
-                    if (!encontrouAdjacenteNaoVisitado) { 
-                        stack.pop(); // Remove o vértice do topo da pilha
-                        time++;
-                        vidaVertices[1][vertice - 1] = time; // Marcar o tempo de término
-                    }
-                }
             }
         }
     }
@@ -156,11 +132,9 @@ class BPD {
     }
 
     public void analisaArestas(int vertice) {
-        LinkedList<Integer> predecessores = aux.getPredecessores(vertice);
 
         int inicio = vidaVertices[0][vertice - 1];
         int fim = vidaVertices[1][vertice - 1];
-        int pai = vidaVertices[2][vertice - 1];
 
         System.out.println("");
 
@@ -178,30 +152,6 @@ class BPD {
             }
         }
 
-        for (int value : predecessores) {
-            if (vidaVertices[0][value - 1] < inicio && vidaVertices[1][value - 1] > fim && value == pai) {
-                System.out.println(value + " -> " + vertice + " (aresta de árvore)");
-            } else if (vidaVertices[0][value - 1] < inicio && vidaVertices[1][value - 1] > fim && value != pai) {
-                System.out.println(value + " -> " + vertice + " (aresta de avanço)");
-            } else if (vidaVertices[0][value - 1] > inicio && vidaVertices[1][value - 1] < fim) {
-                System.out.println(value + " -> " + vertice + " (aresta de retorno)");
-            } else if (vidaVertices[0][value - 1] > inicio && vidaVertices[1][value - 1] > fim) {
-                System.out.println(value + " -> " + vertice + " (aresta de cruzamento)");
-            }
-        }
-
-    }
-
-    public BPD(String arq, int vertice) {
-
-        aux = new Grafo(arq, vertice);
-        this.grafo = aux.cloneGrafo();
-
-        vidaVertices = new int[3][aux.getTam()];
-        preencher(aux.getTam());
-
-        // BuscaProfundidade();
-        BuscaProfundidade2();
     }
 
     public void printVida() {
@@ -216,7 +166,7 @@ class BPD {
 
 }
 
-public class InnerBPD {
+public class Implementacao02 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -231,7 +181,6 @@ public class InnerBPD {
 
         BPD bpd = new BPD(arq, vertice);
 
-        // bpd.printVida();
         bpd.analisaArestas(vertice);
     }
 }

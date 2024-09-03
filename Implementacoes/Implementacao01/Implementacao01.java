@@ -1,4 +1,4 @@
-package Implementacao01;
+package Implementacoes.Implementacao01;
 
 // Implementação da lista de adjacência vista nos slides da disciplina.
 // A escolha foi devido a maior facilidade de implementação e pela menor utilização de memória se comparado com os outros algoritmos estudados
