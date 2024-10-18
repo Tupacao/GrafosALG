@@ -1,6 +1,7 @@
 package Incidencia;
 
-import java.io.RandomAccessFile;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 public class IncidenciaD {
 
@@ -41,8 +42,10 @@ public class IncidenciaD {
         int linha = 0, coluna = 0;
 
         try {
-            RandomAccessFile raf = new RandomAccessFile("./entrada100.txt", "r");
-            String line = raf.readLine();
+            
+            BufferedReader buf = new BufferedReader(new FileReader("./entrada100.txt"));
+
+            String line = buf.readLine();
 
             String aux[] = line.split(" ");
 
@@ -53,7 +56,7 @@ public class IncidenciaD {
 
             preencherMatriz(matriz, linha, coluna);
             int count = 0;
-            while ((line = raf.readLine()) != null) {
+            while ((line = buf.readLine()) != null) {
                 aux = line.split(" ");
                 int v1 = Integer.parseInt(aux[0]) - 1;
                 int v2 = Integer.parseInt(aux[1]) - 1;
@@ -62,7 +65,7 @@ public class IncidenciaD {
                 count++;
             }
             
-            raf.close();
+            buf.close();
 
         } catch (Exception e) {
 

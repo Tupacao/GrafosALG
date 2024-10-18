@@ -96,7 +96,7 @@ class BPD extends Grafo{
         vidaVertices = new int[3][getTam()];
         preencher(getTam());
 
-        BuscaProfundidade();
+        BuscaProfundidade(vertice);
     }
 
     private void preencher(int tam) {
@@ -107,7 +107,7 @@ class BPD extends Grafo{
         }
     }
 
-    private void BuscaProfundidade() {
+    private void BuscaProfundidade(int verticeBusca) {
         int time = 0;
         for (int i = 0; i < grafo.length; i++) {
             if (vidaVertices[0][i] == 0) {

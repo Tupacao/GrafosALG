@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.util.Collections;
 import java.util.LinkedList;
 
+// Não Implemnetado
+
 class Grafo {
 
     private LinkedList<Integer> sucessoresDirecional[] = null;
