@@ -1,13 +1,17 @@
 package FluxoMaximo;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class FloydWarshall {
 
     int[][] dist = null;
-    List<Set<Integer>> predecessors = null;
+    int[][] residual_dist = null;
+    List<Integer>[] residual_graph;
+    Grafo graph;
+
+    private void copyGraph (){
+        residual_graph = graph.cloneGrafo();
+    }
 
     public FloydWarshall (int tam) {
         dist = new int[tam][tam];
