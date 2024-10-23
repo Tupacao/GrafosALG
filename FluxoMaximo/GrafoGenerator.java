@@ -3,6 +3,7 @@ package FluxoMaximo;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Random;
 
 public class GrafoGenerator {
@@ -26,7 +27,6 @@ public class GrafoGenerator {
                     writer.write(i + "," + v + "\n");
                 }
             }
-            System.out.println("Grafo exportado para " + filename);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -36,12 +36,14 @@ public class GrafoGenerator {
         return grafo.cloneGrafo();
     }
 
+    public Map<String, Aresta> cloneEdge (){
+        return grafo.cloneEdge();
+    }
+
     private void generateGraph() {
         Random rand = new Random();
         int medArestas = rand.nextInt(maxArestas - minArestas) + minArestas;
         int arestaCount = 0, arestasGrafo = 0;
-
-        System.out.println("Media de arestas: " + medArestas);
 
         while (arestaCount < vertices - 1) {
             grafo.setSuce(arestaCount, arestaCount+1, rand.nextInt(29) + 1);

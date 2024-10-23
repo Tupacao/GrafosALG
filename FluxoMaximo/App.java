@@ -2,9 +2,8 @@ package FluxoMaximo;
 
 public class App {
     public static void main(String[] args) {
-        GrafoGenerator gfr = new GrafoGenerator(20);
-        // DFS dfs = new DFS(gfr.cloneGrafo());
-        // Grafo gf = new Grafo("./FluxoMaximo/grafo.csv", 20);
-        // DFS dfs = new DFS(gf.cloneGrafo());
+        GrafoGenerator gf = new GrafoGenerator(20);
+        // Grafo gf = new Grafo("./FluxoMaximo/grafo.csv", 10);
+        FordFulkerson fd = new FordFulkerson(gf.cloneGrafo(), gf.cloneEdge(), 19);
     }
 }

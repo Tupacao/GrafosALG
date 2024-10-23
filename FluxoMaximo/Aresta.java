@@ -9,11 +9,13 @@ class Aresta {
         this.capacidade = capacidade;
     }
 
-    public void setCapacidade (int val){
-        if(fluxo + val <= capacidade){
-            this.fluxo+=val;
+    public void setFluxo(int val) {
+        if (val >= 0 && fluxo + val <= capacidade) {
+            this.fluxo += val;
+        } else if (val < 0 && fluxo + val >= 0) {
+            this.fluxo += val;
         } else {
-            System.out.println("Erro: Valor de capacidade excedida");
+            System.out.println("Erro: Fluxo inválido");
         }
     }
 

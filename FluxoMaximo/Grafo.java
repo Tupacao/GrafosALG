@@ -40,6 +40,10 @@ public class Grafo {
         return this.grafo;
     }
 
+    public Map<String, Aresta> cloneEdge (){
+        return edges;
+    }
+
     public void setSuce (int v, int w, int capacity){
         grafo[v].add(w);
         addEdge(capacity, v+"-"+w);
@@ -94,5 +98,9 @@ public class Grafo {
 
     private void addEdge (int capacity, String str){
         edges.put(str, new Aresta(capacity));
+    }
+
+    public int getArestaCount() {
+        return edges.size();
     }
 }
