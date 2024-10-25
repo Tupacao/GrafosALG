@@ -53,7 +53,7 @@ public class Grafo {
         return grafo[v].contains(w);
     }
 
-    public void arqGrafo (String path){
+    private void arqGrafo (String path){
         Random rand = new Random();
 
         try {
@@ -62,11 +62,11 @@ public class Grafo {
 
             while ((line = br.readLine()) != null) {
                 String temp[] = line.split(",");
-                setSuce(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]), rand.nextInt(30));
+                setSuce(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]), 1);
             }
 
             br.close();
-            printGraph();
+            // printGraph();
 
         } catch (Exception e) {
             System.out.println("Erro arq: " + e.getMessage());

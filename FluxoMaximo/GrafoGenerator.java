@@ -46,7 +46,8 @@ public class GrafoGenerator {
         int arestaCount = 0, arestasGrafo = 0;
 
         while (arestaCount < vertices - 1) {
-            grafo.setSuce(arestaCount, arestaCount+1, rand.nextInt(29) + 1);
+            // grafo.setSuce(arestaCount, arestaCount+1, rand.nextInt(29) + 1);
+            grafo.setSuce(arestaCount, arestaCount+1, 1);
             arestaCount++;
             arestasGrafo++;
         }
@@ -57,7 +58,8 @@ public class GrafoGenerator {
 
             if(v != w && !grafo.isEdge(v, w) && !grafo.isEdge(w, v)){
                 if(v != vertices - 1){
-                    grafo.setSuce(v, w, rand.nextInt(29) + 1);
+                    // grafo.setSuce(v, w, rand.nextInt(29) + 1);
+                    grafo.setSuce(v, w, 1);
                     arestasGrafo++;
                 }
             }
@@ -65,11 +67,11 @@ public class GrafoGenerator {
             arestaCount++;
         }
         
-        System.out.println("Arestas de verdade: " + arestasGrafo + " - Arestas que era pra ter: " + medArestas);
+        // System.out.println("Arestas de verdade: " + arestasGrafo + " - Arestas que era pra ter: " + medArestas);
 
         exportGraphToCSV("grafo.csv");
 
-        grafo.printGraph();
-        grafo.printEdge();
+        // grafo.printGraph();
+        // grafo.printEdge();
     }
 }

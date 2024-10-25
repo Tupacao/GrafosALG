@@ -2,8 +2,11 @@ package FluxoMaximo;
 
 public class App {
     public static void main(String[] args) {
-        GrafoGenerator gf = new GrafoGenerator(20);
-        // Grafo gf = new Grafo("./FluxoMaximo/grafo.csv", 10);
-        FordFulkerson fd = new FordFulkerson(gf.cloneGrafo(), gf.cloneEdge(), 19);
+        int tam = 10;
+        // GrafoGenerator gf = new GrafoGenerator(tam);
+        CayleyGraph gf = new CayleyGraph(tam);
+        // Grafo gf = new Grafo("./FluxoMaximo/grafo.csv", tam);
+        FordFulkerson fd = new FordFulkerson(gf.cloneGrafo(), gf.cloneEdge(), tam - 1);
+        
     }
 }

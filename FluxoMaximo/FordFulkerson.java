@@ -9,15 +9,17 @@ public class FordFulkerson {
 
     LinkedList<Integer>[] residual;
     LinkedList<Integer>[] graph;
+    LinkedList<LinkedList<Integer>> caminhos;
     Map<String, Aresta> edges;
 
     public FordFulkerson(LinkedList<Integer>[] graph, Map<String, Aresta> edges, int antibase) {
         this.graph = graph;
         this.edges = edges;
-        System.out.println("Valor fluxo máximo: " + fluxoMaximo(antibase));
+        this.caminhos = new LinkedList<>();
+        fluxoMaximo(antibase);
+        // System.out.println("Valor fluxo máximo: " + fluxoMaximo(antibase));
     }
 
-    @SuppressWarnings("unchecked")
     private int fluxoMaximo(int antibase) {
 
         buildResidual();
@@ -27,6 +29,8 @@ public class FordFulkerson {
         int maxflox = 0;
 
         while (!tree.isEmpty() && tree.getLast() == antibase) {
+            
+            caminhos.add(tree);
 
             int pathFlow = Integer.MAX_VALUE;
 
@@ -61,7 +65,12 @@ public class FordFulkerson {
             tree = new DFS(residual).getTree();
         }
 
-        gerarCSVGrafoResidual("./FluxoMaximo/residual.csv");
+        // gerarCSVGrafoResidual("./FluxoMaximo/residual.csv");
+
+        // System.out.println("Numero de caminhos disjuntos: " + caminhos.size());
+        // for (LinkedList<Integer> list : caminhos) {
+        //     System.out.println(list);
+        // }
 
         return maxflox;
     }
@@ -98,10 +107,14 @@ public class FordFulkerson {
                         int fluxo = edges.get(i + "-" + w).getFluxo();
                         int capacidade = edges.get(i + "-" + w).getCapacity();
                         writer.append(i + "," + w + "," + fluxo + "/" + capacidade + "\n");
+                    }else if (edges.get(w + "-" + i) != null){
+                        int fluxo = edges.get(w + "-" + i).getFluxo();
+                        int capacidade = edges.get(w + "-" + i).getCapacity();
+                        writer.append(w + "," + i + "," + fluxo + "/" + capacidade + "\n");
                     }
                 }
             }
-            System.out.println("Arquivo CSV gerado com sucesso!");
+            // System.out.println("Arquivo CSV gerado com sucesso!");
         } catch (IOException e) {
             System.err.println("Erro ao gerar o arquivo CSV: " + e.getMessage());
         }

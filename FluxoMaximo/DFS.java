@@ -31,7 +31,7 @@ public class DFS {
             }
         }
         
-        System.out.println(tree);
+        // System.out.println(tree);
     }
 
     public LinkedList<Integer> getTree() {
