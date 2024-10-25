@@ -5,8 +5,8 @@ import java.io.IOException;
 
 public class Avaliacoes {
     public static void main(String[] args) {
-        int[] tamanhos = {10, 100, 1000, 2000};
-        long limiteTempo = 300 * 1_000_000_000L;  // 20 segundos em nanossegundos
+        int[] tamanhos = {10, 100, 1000, 5000};
+        long limiteTempo = 600 * 1_000_000_000L;  // 20 segundos em nanossegundos
         long inicioPrograma = System.nanoTime();
 
         try (FileWriter writer = new FileWriter("resultados_tempo.csv")) {

@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.Random;
 
 public class Grafo {
 
@@ -54,7 +53,6 @@ public class Grafo {
     }
 
     private void arqGrafo (String path){
-        Random rand = new Random();
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
@@ -66,7 +64,6 @@ public class Grafo {
             }
 
             br.close();
-            // printGraph();
 
         } catch (Exception e) {
             System.out.println("Erro arq: " + e.getMessage());

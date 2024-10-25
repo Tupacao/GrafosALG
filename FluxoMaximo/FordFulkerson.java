@@ -17,7 +17,7 @@ public class FordFulkerson {
         this.edges = edges;
         this.caminhos = new LinkedList<>();
         fluxoMaximo(antibase);
-        // System.out.println("Valor fluxo máximo: " + fluxoMaximo(antibase));
+        System.out.println("Valor fluxo máximo: " + fluxoMaximo(antibase));
     }
 
     private int fluxoMaximo(int antibase) {
@@ -65,12 +65,10 @@ public class FordFulkerson {
             tree = new DFS(residual).getTree();
         }
 
-        // gerarCSVGrafoResidual("./FluxoMaximo/residual.csv");
-
-        // System.out.println("Numero de caminhos disjuntos: " + caminhos.size());
-        // for (LinkedList<Integer> list : caminhos) {
-        //     System.out.println(list);
-        // }
+        System.out.println("Numero de caminhos disjuntos: " + caminhos.size());
+        for (LinkedList<Integer> list : caminhos) {
+            System.out.println(list);
+        }
 
         return maxflox;
     }

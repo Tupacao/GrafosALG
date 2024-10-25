@@ -19,7 +19,6 @@ public class CayleyGraph {
 
     private void generateGraph() {
 
-        // Adiciona as arestas com base em um gerador (exemplo: 1)
         int generator = 11; // pode ser qualquer número coprimo com n
         
         for (int i = 0; i < grafo.cloneGrafo().length; i++) {

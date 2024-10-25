@@ -30,8 +30,6 @@ public class DFS {
                 aux = sun[aux];
             }
         }
-        
-        // System.out.println(tree);
     }
 
     public LinkedList<Integer> getTree() {
